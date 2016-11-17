@@ -2,21 +2,30 @@
   <head>
     <title>Editor</title>
     <!-- build:css styles/style.min.css -->
-      <link rel="stylesheet" type="text/css" href="./assets/css/styles.css" media="screen" />
+      <link rel="stylesheet" type="text/css" href="./styles/style.css" media="screen" />
     <!-- endbuild -->
   </head>
   <body>
     editor goes here!!
+    <div contenteditable="true" id="editor">
+      Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb.
+    </div>
   </body>
 
   <!-- build:js scripts/vendor.js -->
   <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/es5-shim/es5-shim.js"></script>
+  <script src="bower_components/bacon/dist/Bacon.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
   <!-- build:js scripts/editor.min.js -->
     <script src="./scripts/editor.js"></script>
   <!-- endbuild -->
+
+  <script>
+    var editor = new Editor($("#editor"));
+  </script>
 </html>
 
