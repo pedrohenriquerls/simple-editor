@@ -4,7 +4,8 @@
   "dependencies": {
     "es5-shim": "~2.1.0",
     "jquery": "*",
-    "bacon": "*"
+    "bacon": "*",
+    "lodash": "*"
   },
   "devDependencies": {
   }
