@@ -8,8 +8,8 @@ var Utils = {
 function EditorActions(){}
 
 EditorActions.prototype = {
-  executeByEvent: function(event){
-    var action = this.getBy(event.valueF());
+  executeOnEvent: function(event){
+    var action = this.getBy(event.keyCode);
     document.execCommand(action, false, null);
   },
 
@@ -36,24 +36,21 @@ Editor.prototype = {
     this.keyDown = $element.asEventStream('keydown');
   },
   subscribeEvents: function(){
-    var self = this;
-    this.keyStateProperty().subscribe(function(event){
-      self.actions.executeByEvent(event);
-    })
+    this.keyStateProperty().assign(this.actions, "executeOnEvent");
   },
   keyCodeHaveAction: function() {
     var self = this;
-    return function(event) { return !_.isUndefined(self.actions.getBy(event.keyCode)) }
+    return function(event) { return !_.isUndefined(self.actions.getBy(event.keyCode)); }
   },
   haveCombinationKey: function(){
-    return function(event){ return (event.ctrlKey || event.metaKey) }
+    return function(event){ return (event.ctrlKey || event.metaKey); }
   },
   keyDownEvents: function() {
     return this.keyDown.filter(this.haveCombinationKey())
-                       .filter(this.keyCodeHaveAction())
+                       .filter(this.keyCodeHaveAction());
   },
   keyStateProperty: function() {
-    return this.keyDownEvents().map(function(event) { return event.keyCode })
+    return this.keyDownEvents().toProperty();
   }
 }
 
