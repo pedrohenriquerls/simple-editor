@@ -1,24 +1,28 @@
+var Utils = {
+  decode: function(keyCode){
+    return String.fromCharCode(keyCode).toLowerCase();
+  }
+}
+
 
 function EditorActions(){}
 
 EditorActions.prototype = {
   executeByEvent: function(event){
     var action = this.getBy(event.valueF());
-    action();
+    document.execCommand(action, false, null);
   },
 
   getBy: function(keyCode){
-    return this.getActionByKeyCode(keyCode);
+    switch (Utils.decode(keyCode)) {
+      case 'b':
+        return "bold";
+      case 'i':
+        return "italic";
+      case 'u':
+        return "underline";
+    }
   },
-
-  getActionByKeyCode: function(keyCode){
-    if(keyCode == 66)
-      return this.bold;
-  },
-
-  bold: function(){
-    console.log("define bold things")
-  }
 }
 
 function Editor($element){
