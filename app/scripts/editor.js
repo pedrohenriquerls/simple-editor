@@ -1,30 +1,55 @@
-function Editor($element){
-  this.getEvents($element);
-}
-actions = {'66': 'teset'}
 
+function EditorActions(){}
+
+EditorActions.prototype = {
+  executeByEvent: function(event){
+    var action = this.getBy(event.valueF());
+    action();
+  },
+
+  getBy: function(keyCode){
+    return this.getActionByKeyCode(keyCode);
+  },
+
+  getActionByKeyCode: function(keyCode){
+    if(keyCode == 66)
+      return this.bold;
+  },
+
+  bold: function(){
+    console.log("define bold things")
+  }
+}
+
+function Editor($element){
+  this.actions = new EditorActions();
+  this.getEvents($element);
+  this.subscribeEvents();
+}
 
 Editor.prototype = {
   getEvents: function($element){
     this.keyDown = $element.asEventStream('keydown');
-    this.click = $element.asEventStream('click');
-    this.subscribeEvents();
   },
   subscribeEvents: function(){
-    this.keyStateProperty(66).subscribe(function(x, y){ console.log(x, x.valueF()); console.log(x.once)})
+    var self = this;
+    this.keyStateProperty().subscribe(function(event){
+      self.actions.executeByEvent(event);
+    })
   },
-  action: function(name) { return actions[name] },
-  keyCodeIs: function(keyCode) {
-    return function(event) { return event.keyCode == keyCode }
+  keyCodeHaveAction: function() {
+    var self = this;
+    return function(event) { return !_.isUndefined(self.actions.getBy(event.keyCode)) }
   },
   haveCombinationKey: function(){
     return function(event){ return (event.ctrlKey || event.metaKey) }
   },
-  keyDownEvents: function(keyCode) {
+  keyDownEvents: function() {
     return this.keyDown.filter(this.haveCombinationKey())
-                       .filter(this.keyCodeIs(keyCode))
+                       .filter(this.keyCodeHaveAction())
   },
-  keyStateProperty: function(keyCode) {
-    return this.keyDownEvents(keyCode).map(this.action(keyCode))
+  keyStateProperty: function() {
+    return this.keyDownEvents().map(function(event) { return event.keyCode })
   }
 }
+
