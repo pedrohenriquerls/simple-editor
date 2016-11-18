@@ -10,6 +10,7 @@ function EditorActions(){}
 EditorActions.prototype = {
   executeOnEvent: function(event){
     var action = this.getBy(event.keyCode);
+    event.preventDefault();
     document.execCommand(action, false, null);
   },
 
