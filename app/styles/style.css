@@ -3,6 +3,6 @@ body{
 }
 #editor{
   background-color: white;
-  width: 600px;
-  height: 300px;
+  min-width: 600px;
+  min-height: 300px;
 }
