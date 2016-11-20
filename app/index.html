@@ -6,7 +6,15 @@
     <!-- endbuild -->
   </head>
   <body>
-    editor goes here!!
+    <h3>Simple editor</h3>
+    <div> Commands:
+      <ul>
+        <li><strong>ctrl or cmd + b</strong> = Bold</li>
+        <li><strong>ctrl or cmd + u</strong> = Underline</li>
+        <li><strong>ctrl or cmd + i</strong> = Italic</li>
+      </ul>
+    </div>
+    <div><strong>Images: </strong> Put the cursor where you want the image stay, choose your image and drop into the editor</div>
     <div contenteditable="true" id="editor">
       Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb.
     </div>
@@ -22,6 +30,8 @@
   <!-- endbuild -->
 
   <!-- build:js scripts/editor.min.js -->
+    <script src="./scripts/utils.js"></script>
+    <script src="./scripts/editorActions.js"></script>
     <script src="./scripts/editor.js"></script>
   <!-- endbuild -->
 
