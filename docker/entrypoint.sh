@@ -1,4 +1,5 @@
 #!/bin/bash
 bower install --allow-root
 npm install
-grunt serve
+echo "Initializing server for $1"
+grunt serve:$1

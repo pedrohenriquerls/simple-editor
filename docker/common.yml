@@ -1,0 +1,12 @@
+
+version: '2'
+services:
+  editor:
+    build: ..
+    entrypoint: /var/editor/docker/entrypoint.sh
+    volumes:
+      - ..:/var/editor
+    ports:
+      - "9000:9000"
+      - "35729:35729"
+    tty: true

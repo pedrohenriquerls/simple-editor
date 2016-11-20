@@ -1,11 +1,12 @@
 version: '2'
 services:
-  editor:
-    build: .
-    entrypoint: /var/editor/scripts/entrypoint.sh
-    volumes:
-      - .:/var/editor
-    ports:
-      - "9000:9000"
-      - "35729:35729"
-    tty: true
+  editor_dev:
+    extends:
+      file: docker/common.yml
+      service: editor
+    entrypoint: /var/editor/docker/entrypoint.sh dev
+  editor_prod:
+    extends:
+      file: docker/common.yml
+      service: editor
+    entrypoint: /var/editor/docker/entrypoint.sh dist
