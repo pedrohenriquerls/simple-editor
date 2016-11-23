@@ -205,6 +205,10 @@ module.exports = function (grunt) {
       }
     },
 
+    bower: {
+      install: {}
+    }
+
     // Run some tasks in parallel to speed up the build process
     /*concurrent: {
       server: [
@@ -223,6 +227,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'bower',
       'bowerInstall',
       //'concurrent:server',
       'autoprefixer',
@@ -238,6 +243,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'bower',
     'bowerInstall',
     'useminPrepare',
     //'concurrent:dist',
