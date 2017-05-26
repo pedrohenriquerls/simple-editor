@@ -11,11 +11,11 @@
 Because is the best and more safe way to let the dependencies separated.
 
 ### Why use baconjs?
-Baconjs is a functional reactive lib and this helps a lot to avoid messup with the code when we attach the events or deal with the states of a object.
+Baconjs is a functional reactive lib and this helps a lot to avoid mess up with the code when we attach the events or deal with the states of an object.
 
 ### How can I execute?
 #### With docker:
-you will need to have installed docker and docker-compose, with this two dependencies you just need run the command `docker-compose up editor_prod`, this will build the image and start the server on the port localhost:9000.
+you will need to have installed Docker and docker-compose, with this two dependencies you just need run the command `docker-compose up editor_prod`, this will build the image and start the server on the port localhost:9000.
 > If you are using OSx, you will need to get the container IP to use instead of `localhost`
 
 #### Without docker:
